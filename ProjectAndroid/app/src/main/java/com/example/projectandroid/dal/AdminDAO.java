@@ -7,7 +7,8 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
-import com.example.projectchucn.domain.Admin;
+
+import com.example.projectandroid.domain.Admin;
 
 import java.util.List;
 

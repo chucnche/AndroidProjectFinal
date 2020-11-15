@@ -7,7 +7,7 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
-import com.example.projectchucn.domain.HistoryPayment;
+import com.example.projectandroid.domain.HistoryPayment;
 
 import java.util.List;
 

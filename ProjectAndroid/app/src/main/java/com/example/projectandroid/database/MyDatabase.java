@@ -3,26 +3,26 @@ package com.example.projectandroid.database;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
-import com.example.projectchucn.dal.AccountDAO;
-import com.example.projectchucn.dal.AdminDAO;
-import com.example.projectchucn.dal.AvailibleBookingTimeDAO;
-import com.example.projectchucn.dal.ElectricityWaterBillsDAO;
-import com.example.projectchucn.dal.HistoryBookDAO;
-import com.example.projectchucn.dal.HistoryPaymentDAO;
-import com.example.projectchucn.dal.ManagerDAO;
-import com.example.projectchucn.dal.RequestDAO;
-import com.example.projectchucn.dal.RoomDAO;
-import com.example.projectchucn.dal.StudentDAO;
-import com.example.projectchucn.domain.Account;
-import com.example.projectchucn.domain.Admin;
-import com.example.projectchucn.domain.AvailibleBookingTime;
-import com.example.projectchucn.domain.ElectricityWaterBills;
-import com.example.projectchucn.domain.HistoryBook;
-import com.example.projectchucn.domain.HistoryPayment;
-import com.example.projectchucn.domain.Manager;
-import com.example.projectchucn.domain.Request;
-import com.example.projectchucn.domain.Room;
-import com.example.projectchucn.domain.Student;
+import com.example.projectandroid.dal.AccountDAO;
+import com.example.projectandroid.dal.AdminDAO;
+import com.example.projectandroid.dal.AvailibleBookingTimeDAO;
+import com.example.projectandroid.dal.ElectricityWaterBillsDAO;
+import com.example.projectandroid.dal.HistoryBookDAO;
+import com.example.projectandroid.dal.HistoryPaymentDAO;
+import com.example.projectandroid.dal.ManagerDAO;
+import com.example.projectandroid.dal.RequestDAO;
+import com.example.projectandroid.dal.RoomDAO;
+import com.example.projectandroid.dal.StudentDAO;
+import com.example.projectandroid.domain.Account;
+import com.example.projectandroid.domain.Admin;
+import com.example.projectandroid.domain.AvailibleBookingTime;
+import com.example.projectandroid.domain.ElectricityWaterBills;
+import com.example.projectandroid.domain.HistoryBook;
+import com.example.projectandroid.domain.HistoryPayment;
+import com.example.projectandroid.domain.Manager;
+import com.example.projectandroid.domain.Request;
+import com.example.projectandroid.domain.Room;
+import com.example.projectandroid.domain.Student;
 
 @Database(entities = {Account.class, Admin.class, AvailibleBookingTime.class, ElectricityWaterBills.class, HistoryBook.class, HistoryPayment.class, Manager.class, Request.class, Room.class, Student.class},version = 1)
 public abstract class MyDatabase extends RoomDatabase {

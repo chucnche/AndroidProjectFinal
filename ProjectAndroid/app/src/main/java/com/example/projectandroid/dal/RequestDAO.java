@@ -7,7 +7,7 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
-import com.example.projectchucn.domain.Request;
+import com.example.projectandroid.domain.Request;
 
 import java.util.List;
 

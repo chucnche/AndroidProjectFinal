@@ -7,7 +7,7 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
-import com.example.projectchucn.domain.Account;
+import com.example.projectandroid.domain.Account;
 
 import java.util.List;
 
