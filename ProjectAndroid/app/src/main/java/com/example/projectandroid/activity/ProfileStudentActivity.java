@@ -1,10 +1,12 @@
-package com.example.projectandroid;
+package com.example.projectandroid.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ProfileStudent extends AppCompatActivity {
+import com.example.projectandroid.R;
+
+public class ProfileStudentActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
