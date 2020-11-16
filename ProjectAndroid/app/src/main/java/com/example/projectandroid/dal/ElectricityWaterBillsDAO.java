@@ -8,6 +8,7 @@ import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.projectandroid.domain.ElectricityWaterBills;
+import com.example.projectandroid.domain.Student;
 
 import java.util.List;
 
@@ -25,4 +26,6 @@ public interface ElectricityWaterBillsDAO {
 
     @Query("SELECT * FROM electricitywaterbills")
     public List<ElectricityWaterBills> listElectricityWaterBills();
+    @Query("SELECT * FROM electricitywaterbills where roomName =:roomname")
+    public List<ElectricityWaterBills> getBillByRoomName(String roomname);
 }
