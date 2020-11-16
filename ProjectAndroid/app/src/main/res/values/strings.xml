@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">ProjectAndroid</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">Beautiful_navigation_drawer</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="gender">

@@ -27,4 +27,6 @@ public interface AccountDAO {
     public List<Account> listAccount();
     @Query("SELECT * FROM account where username =:username AND password =:password")
     public Account getAccount(String username, String password);
+    @Query("SELECT * FROM account where username =:username")
+    public Account getAccountByUser(String username);
 }

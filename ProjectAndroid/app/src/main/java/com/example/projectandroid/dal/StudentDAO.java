@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
+import com.example.projectandroid.domain.Account;
 import com.example.projectandroid.domain.Student;
 
 import java.util.List;
@@ -25,4 +26,7 @@ public interface StudentDAO {
 
     @Query("SELECT * FROM student")
     public List<Student> listStudent();
+
+    @Query("SELECT * FROM student where username =:username")
+    public Student getStudentByUser(String username);
 }
