@@ -1,13 +1,17 @@
-package com.example.projectandroid.activity;
+package com.example.projectandroid.fragment;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.room.Room;
+
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import com.example.projectandroid.R;
 import com.example.projectandroid.adapter.ListStudentAdapter;
@@ -18,27 +22,74 @@ import com.example.projectandroid.dal.ManagerDAO;
 import com.example.projectandroid.dal.RoomDAO;
 import com.example.projectandroid.dal.StudentDAO;
 import com.example.projectandroid.database.MyDatabase;
-import com.example.projectandroid.domain.Account;
-import com.example.projectandroid.domain.Admin;
-import com.example.projectandroid.domain.Bed;
-import com.example.projectandroid.domain.Manager;
 import com.example.projectandroid.domain.Student;
 
 import java.util.List;
 
-public class ManageStudentActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link ManageStudentFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class ManageStudentFragment extends Fragment {
+
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    public ManageStudentFragment() {
+        // Required empty public constructor
+    }
 
     private MyDatabase myDatabase;
     ListView listViewStudentManage;
 
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment ManageStudentFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static ManageStudentFragment newInstance(String param1, String param2) {
+        ManageStudentFragment fragment = new ManageStudentFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_student);
+    }
 
-        myDatabase = Room.databaseBuilder(getBaseContext(), MyDatabase.class, "projectchucnc.db").allowMainThreadQueries().build();
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_manage_student, container, false);
+    }
 
-        listViewStudentManage = findViewById(R.id.listViewStudentManage);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+        myDatabase = Room.databaseBuilder(getActivity().getBaseContext(), MyDatabase.class, "projectchucnc.db").allowMainThreadQueries().build();
+
+        listViewStudentManage = getView().findViewById(R.id.listViewStudentManage);
 
         RoomDAO roomDAO = myDatabase.createRoomDAO();
 //        roomDAO.insert(new com.example.projectandroid.domain.Room("A114", 1, 250));
@@ -83,10 +134,9 @@ public class ManageStudentActivity extends AppCompatActivity {
 //        studentDAO.insert(new Student("HE130008", "student8", "Student Eight", "01/02/1998", 0, "A205", 6, "18/08/2016", 0, 0));
 
         List<Student> students = studentDAO.listStudent();
-        listViewStudentManage.setAdapter(new ListStudentAdapter(this, R.layout.list_student_adapter, students));
+        listViewStudentManage.setAdapter(new ListStudentAdapter(getContext(), R.layout.adapter_list_student, students));
 
         setListViewHeightBasedOnChildren(listViewStudentManage);
-
     }
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
@@ -107,5 +157,4 @@ public class ManageStudentActivity extends AppCompatActivity {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
     }
-
 }

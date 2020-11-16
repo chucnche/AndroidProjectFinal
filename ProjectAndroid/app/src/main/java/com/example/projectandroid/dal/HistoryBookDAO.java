@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
+import com.example.projectandroid.domain.ElectricityWaterBills;
 import com.example.projectandroid.domain.HistoryBook;
 
 import java.util.List;
@@ -25,4 +26,5 @@ public interface HistoryBookDAO {
 
     @Query("SELECT * FROM historybook")
     public List<HistoryBook> listHistoryBook();
+
 }
