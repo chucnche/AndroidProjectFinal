@@ -1,10 +1,14 @@
 package com.example.projectandroid.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 
+import com.example.projectandroid.fragment.ManageStudentFragment;
 import com.example.projectandroid.R;
 import com.example.projectandroid.database.MyDatabase;
 
@@ -41,5 +45,20 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ManageStudentFragment manageStudentFragment = new ManageStudentFragment();
+        fragmentTransaction.add(R.id.frameLayout, manageStudentFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater maMenuInflater = getMenuInflater();
+        maMenuInflater.inflate(R.menu.drawer_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
 }
