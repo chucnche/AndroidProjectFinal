@@ -27,4 +27,8 @@ public interface HistoryBookDAO {
     @Query("SELECT * FROM historybook")
     public List<HistoryBook> listHistoryBook();
 
+    @Query("SELECT * FROM historybook WHERE stuID =:stuID")
+    public List<HistoryBook> listHistoryBookByUsername(String stuID);
+
+
 }

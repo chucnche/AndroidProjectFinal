@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 @Entity
 public class HistoryBook {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int bookID;
     @ForeignKey(entity = Student.class,
             parentColumns = {"stuID"},

@@ -25,4 +25,7 @@ public interface RequestDAO {
 
     @Query("SELECT * FROM request")
     public List<Request> listRequest();
+
+    @Query("SELECT * FROM request WHERE stuID =:userId ")
+    public List<Request> listRequestByUser(String userId);
 }

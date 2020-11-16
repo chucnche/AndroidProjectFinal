@@ -46,11 +46,18 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, ProfileStudentActivity.class);
                 switch (id) {
                     case R.id.nav_profile:
-                        loadFragment();
+                        ProfileFragment profileFragment = new ProfileFragment();
+                        loadFragment(profileFragment);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.nav_book_room:
-                        loadFragment2();
+                        BookRoomFragment bookRoomFragment = new BookRoomFragment();
+                        loadFragment(bookRoomFragment);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_request:
+                        RequestFragment requestFragment = new RequestFragment();
+                        loadFragment(requestFragment);
                         drawerLayout.closeDrawers();
                         break;
                     default:
@@ -61,22 +68,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadFragment() {
-        ProfileFragment addCatalog = new ProfileFragment();
+    private void loadFragment(Fragment fragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.frame, addCatalog);
+        transaction.replace(R.id.frame, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
-    private void loadFragment2() {
-        BookRoomFragment addCatalog = new BookRoomFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.frame, addCatalog);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
 
 }

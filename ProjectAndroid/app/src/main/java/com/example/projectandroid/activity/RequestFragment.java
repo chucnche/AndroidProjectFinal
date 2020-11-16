@@ -18,10 +18,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link BookRoomFragment#newInstance} factory method to
+ * Use the {@link RequestFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class BookRoomFragment extends Fragment {
+public class RequestFragment extends Fragment {
 
     private BottomNavigationView  bottomNavigationView;
     // TODO: Rename parameter arguments, choose names that match
@@ -33,7 +33,7 @@ public class BookRoomFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public BookRoomFragment() {
+    public RequestFragment() {
         // Required empty public constructor
     }
 
@@ -43,11 +43,11 @@ public class BookRoomFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment BookRoomFragment.
+     * @return A new instance of fragment RequestFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static BookRoomFragment newInstance(String param1, String param2) {
-        BookRoomFragment fragment = new BookRoomFragment();
+    public static RequestFragment newInstance(String param1, String param2) {
+        RequestFragment fragment = new RequestFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,25 +68,26 @@ public class BookRoomFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_book_room, container, false);
+        return inflater.inflate(R.layout.fragment_request, container, false);
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        bottomNavigationView = (BottomNavigationView) view.findViewById(R.id.bottom_navigation);
+        bottomNavigationView = (BottomNavigationView) view.findViewById(R.id.bottom_navigation_request);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.page_1:
-                        StudentBookFragment studentBookFragment = new StudentBookFragment();
+                        CreateRequestFragment studentBookFragment = new CreateRequestFragment();
                         loadFragment(studentBookFragment);
                         break;
                     case R.id.page_2:
-                        HistoryBookFragment historyBookFragment = new HistoryBookFragment();
-                        loadFragment(historyBookFragment);
+                        HistoryRequestFragment historyRequestFragment = new HistoryRequestFragment();
+                        loadFragment(historyRequestFragment);
                         return true;
                     default:
                         return true;
@@ -99,7 +100,7 @@ public class BookRoomFragment extends Fragment {
 //        StudentBookFragment addCatalog = new StudentBookFragment();
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.frameBook, fragment);
+        transaction.replace(R.id.frameRquest, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
