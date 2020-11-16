@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -25,6 +26,8 @@ import com.example.projectandroid.domain.ElectricityWaterBills;
 import com.example.projectandroid.domain.HistoryBook;
 import com.example.projectandroid.domain.Student;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -101,11 +104,11 @@ public class HistoryBookFragment extends Fragment {
                 TableRow tableRow = new TableRow(tableLayout.getContext());
 
                 tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
-                TextView txtId = new TextView(tableLayout.getContext());
-                TextView txtRoomName = new TextView(tableLayout.getContext());
-                TextView txtBedNo = new TextView(tableLayout.getContext());
-                TextView txtDateBook = new TextView(tableLayout.getContext());
-                TextView txtStatus = new TextView(tableLayout.getContext());
+                Button txtId = new Button(tableLayout.getContext());
+                Button txtRoomName = new Button(tableLayout.getContext());
+                Button txtBedNo = new Button(tableLayout.getContext());
+                Button txtDateBook = new Button(tableLayout.getContext());
+                Button txtStatus = new Button(tableLayout.getContext());
                 txtId.setText(String.valueOf(historyBook.getStuID()));
                 txtRoomName.setText(historyBook.getRoomName());
                 txtBedNo.setText(String.valueOf(historyBook.getBedNo()));

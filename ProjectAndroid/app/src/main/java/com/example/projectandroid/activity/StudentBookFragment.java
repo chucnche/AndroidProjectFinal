@@ -32,6 +32,7 @@ import com.example.projectandroid.domain.Bed;
 import com.example.projectandroid.domain.HistoryBook;
 import com.example.projectandroid.domain.Student;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -163,7 +164,8 @@ public class StudentBookFragment extends Fragment {
                     historyBook.setStuID(student.getStuID());
                     historyBook.setRoomName(student.getRoomName());
                     historyBook.setBedNo(student.getBedNo());
-                    historyBook.setDateBook(Calendar.getInstance().getTime().toString());
+                    SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+                    historyBook.setDateBook(simpleDateFormat.format(new Date()));
                     final java.util.Calendar cal = GregorianCalendar.getInstance();
                     cal.setTime(new Date());
                     cal.add( GregorianCalendar.MONTH, 4 ); // date manipulation

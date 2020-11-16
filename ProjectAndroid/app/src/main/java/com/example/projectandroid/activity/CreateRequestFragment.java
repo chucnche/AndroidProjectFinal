@@ -24,7 +24,9 @@ import com.example.projectandroid.database.MyDatabase;
 import com.example.projectandroid.domain.Request;
 import com.example.projectandroid.domain.Student;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -100,7 +102,8 @@ public class CreateRequestFragment extends Fragment {
                     RequestDAO requestDAO = myDatabase.createRequestDAO();
                     Request request=new Request();
                     request.setStuID(student.getStuID());
-                    request.setDateRequest(Calendar.getInstance().getTime().toString());
+                    SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+                    request.setDateRequest(simpleDateFormat.format(new Date()));
                     request.setRequestContent(text);
                     requestDAO.insert(request);
                     HistoryRequestFragment addCatalog = new HistoryRequestFragment();
