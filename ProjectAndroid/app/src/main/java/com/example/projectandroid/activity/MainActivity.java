@@ -1,5 +1,9 @@
 package com.example.projectandroid.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,10 +12,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.example.projectandroid.R;
 import com.example.projectandroid.database.MyDatabase;
@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         drawerLayout = findViewById(R.id.drawer);
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
     private void loadFragment2() {
         BookRoomFragment addCatalog = new BookRoomFragment();
         FragmentManager manager = getSupportFragmentManager();
@@ -76,4 +78,5 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
 }
