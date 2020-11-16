@@ -96,8 +96,8 @@ public class ProfileFragment extends Fragment {
         lblMoneyInAccount=view.findViewById(R.id.lblMoneyInAccount);
         lblDebt=view.findViewById(R.id.lblDebt);
         SharedPreferences sharedPreferences =this.getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
-        final String username = sharedPreferences.getString("username","");
-        myDatabase = Room.databaseBuilder(getContext(), MyDatabase.class, "projectchucnc.db").allowMainThreadQueries().build();
+        final String username = sharedPreferences.getString("username","student1");
+        myDatabase = Room.databaseBuilder(getContext(), MyDatabase.class, "projectchucncsdfs.db").allowMainThreadQueries().build();
         StudentDAO studentDAO=myDatabase.createStudentDAO();
         Student student = studentDAO.getStudentByUser(username);
         if(student!=null && student.getStuID()!=null) {

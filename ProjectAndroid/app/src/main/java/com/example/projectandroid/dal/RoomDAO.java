@@ -25,4 +25,7 @@ public interface RoomDAO {
 
     @Query("SELECT * FROM room")
     public List<Room> listRoom();
+
+    @Query("SELECT * FROM room WHERE roomName LIKE '%' || :a || '%'")
+    public List<Room> listRoomByDom(String a);
 }

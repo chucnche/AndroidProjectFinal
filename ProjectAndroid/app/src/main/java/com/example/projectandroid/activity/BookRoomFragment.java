@@ -95,7 +95,7 @@ public class BookRoomFragment extends Fragment {
         });
     }
     private void loadFragment() {
-        ProfileFragment addCatalog = new ProfileFragment();
+        StudentBookFragment addCatalog = new StudentBookFragment();
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.frameBook, addCatalog);

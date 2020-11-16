@@ -64,4 +64,9 @@ public class Bed {
     public void setBedStatus(int bedStatus) {
         this.bedStatus = bedStatus;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(bedNo);
+    }
 }

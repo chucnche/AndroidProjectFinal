@@ -25,4 +25,10 @@ public interface BedDAO {
 
     @Query("SELECT * FROM bed")
     public List<Bed> listBed();
+
+    @Query("SELECT * FROM bed WHERE roomName =:roomName AND bedStatus=0")
+    public List<Bed> listBedByRoomName(String roomName);
+
+    @Query("SELECT * FROM bed WHERE roomName =:roomName AND bedNo =:bed")
+    public Bed listBedByRoomNameBed(String roomName,int bed);
 }
