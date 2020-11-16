@@ -1,4 +1,4 @@
-package com.example.projectandroid;
+package com.example.projectandroid.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 
+import com.example.projectandroid.R;
 import com.example.projectandroid.fragment.ManageStudentFragment;
 
 public class ManageStudentActivity extends AppCompatActivity {

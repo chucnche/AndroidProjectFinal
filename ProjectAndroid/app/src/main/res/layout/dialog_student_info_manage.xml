@@ -38,10 +38,10 @@
                 <EditText
                     android:id="@+id/txtNameUser"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="#03A9F4"
                     android:focusable="false"
-                    android:text="Nguyễn Công Chức"
+                    android:hint="Student Name"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
@@ -56,8 +56,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/list_view_item_border"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp">
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp">
 
             <LinearLayout
 
@@ -83,12 +83,11 @@
 
                     <EditText
                         android:id="@+id/lblStudentID"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FFFFFF"
                         android:focusable="false"
                         android:fontFamily="sans-serif-light"
-                        android:text="joey@sharenofood.com"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
@@ -114,12 +113,11 @@
 
                     <EditText
                         android:id="@+id/lblDOB"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FFFFFF"
                         android:focusable="false"
                         android:fontFamily="sans-serif-light"
-                        android:text="twitterUsername"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
@@ -143,16 +141,18 @@
                         android:textColor="#3797CF"
                         android:textSize="13sp" />
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/lblGender"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FFFFFF"
                         android:focusable="false"
+                        android:entries="@array/gender"
                         android:fontFamily="sans-serif-light"
-                        android:text="facebook.com/joeytrib"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:backgroundTint="#FFFFFF"
+                        android:spinnerMode="dropdown"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -176,12 +176,12 @@
 
                     <EditText
                         android:id="@+id/lblRoomName"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FFFFFF"
                         android:focusable="false"
                         android:fontFamily="sans-serif-light"
-                        android:text="facebook.com/joeytrib"
+
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
@@ -207,13 +207,13 @@
 
                     <EditText
                         android:id="@+id/lblBedNo"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FFFFFF"
                         android:focusable="false"
                         android:fontFamily="sans-serif-light"
-                        android:text="facebook.com/joeytrib"
                         android:textColor="#000000"
+                        android:inputType="number"
                         android:textSize="18sp" />
 
                     <View
@@ -238,12 +238,11 @@
 
                     <EditText
                         android:id="@+id/lblBookingDate"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FFFFFF"
                         android:focusable="false"
                         android:fontFamily="sans-serif-light"
-                        android:text="facebook.com/joeytrib"
                         android:textColor="#000000"
                         android:textSize="18sp" />
 
@@ -269,13 +268,13 @@
 
                     <EditText
                         android:id="@+id/lblMoneyInAccount"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FFFFFF"
                         android:focusable="false"
                         android:fontFamily="sans-serif-light"
-                        android:text="facebook.com/joeytrib"
                         android:textColor="#000000"
+                        android:inputType="number"
                         android:textSize="18sp" />
 
                     <View
@@ -300,13 +299,13 @@
 
                     <EditText
                         android:id="@+id/lblDebt"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FFFFFF"
                         android:focusable="false"
                         android:fontFamily="sans-serif-light"
-                        android:text="facebook.com/joeytrib"
                         android:textColor="#000000"
+                        android:inputType="number"
                         android:textSize="18sp" />
 
                     <View

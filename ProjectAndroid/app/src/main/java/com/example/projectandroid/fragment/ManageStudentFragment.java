@@ -1,5 +1,8 @@
 package com.example.projectandroid.fragment;
 
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,13 +10,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
 
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.projectandroid.R;
+import com.example.projectandroid.activity.ManageStudentActivity;
 import com.example.projectandroid.adapter.ListStudentAdapter;
 import com.example.projectandroid.dal.AccountDAO;
 import com.example.projectandroid.dal.AdminDAO;
@@ -22,6 +31,7 @@ import com.example.projectandroid.dal.ManagerDAO;
 import com.example.projectandroid.dal.RoomDAO;
 import com.example.projectandroid.dal.StudentDAO;
 import com.example.projectandroid.database.MyDatabase;
+import com.example.projectandroid.dialog.StudentInfoManageDialog;
 import com.example.projectandroid.domain.Student;
 
 import java.util.List;
@@ -48,6 +58,8 @@ public class ManageStudentFragment extends Fragment {
 
     private MyDatabase myDatabase;
     ListView listViewStudentManage;
+    List<Student> students;
+    StudentDAO studentDAO;
 
     /**
      * Use this factory method to create a new instance of
@@ -88,52 +100,49 @@ public class ManageStudentFragment extends Fragment {
         }
 
         myDatabase = Room.databaseBuilder(getActivity().getBaseContext(), MyDatabase.class, "projectchucnc.db").allowMainThreadQueries().build();
+        studentDAO = myDatabase.createStudentDAO();
 
+        final EditText editTextStudentId = getView().findViewById(R.id.editTextStudentId);
         listViewStudentManage = getView().findViewById(R.id.listViewStudentManage);
+        Button btnAddStudent = getView().findViewById(R.id.btnAddStudent);
+        btnAddStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StudentInfoManageDialog studentInfoManageDialog = new StudentInfoManageDialog(getContext(), null, true);
 
-        RoomDAO roomDAO = myDatabase.createRoomDAO();
-//        roomDAO.insert(new com.example.projectandroid.domain.Room("A114", 1, 250));
-//        roomDAO.insert(new com.example.projectandroid.domain.Room("A205", 0, 250));
+                // Restart activity when dialog return dismiss event
+                studentInfoManageDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        Intent intent = new Intent(getContext(), ManageStudentActivity.class);
+                        ((Activity) getContext()).finish();
+                        getContext().startActivity(intent);
+                    }
+                });
 
-        BedDAO bedDAO = myDatabase.createBedDAO();
-//        bedDAO.insert(new Bed(1, "A114", 7, 1));
-//        bedDAO.insert(new Bed(2, "A114", 8, 1));
-//        bedDAO.insert(new Bed(3, "A114", 9, 1));
-//        bedDAO.insert(new Bed(4, "A114", 10, 1));
-//        bedDAO.insert(new Bed(5, "A205", 3, 1));
-//        bedDAO.insert(new Bed(6, "A205", 4, 1));
-//        bedDAO.insert(new Bed(7, "A205", 5, 1));
-//        bedDAO.insert(new Bed(8, "A205", 6, 1));
+                studentInfoManageDialog.show();
 
-        AccountDAO accountDAO = myDatabase.createAccountDAO();
-//        accountDAO.insert(new Account("admin","123",0));
-//        accountDAO.insert(new Account("manager","123",1));
-//        accountDAO.insert(new Account("student1","123",2));
-//        accountDAO.insert(new Account("student2","123",2));
-//        accountDAO.insert(new Account("student3","123",2));
-//        accountDAO.insert(new Account("student4","123",2));
-//        accountDAO.insert(new Account("student5","123",2));
-//        accountDAO.insert(new Account("student6","123",2));
-//        accountDAO.insert(new Account("student7","123",2));
-//        accountDAO.insert(new Account("student8","123",2));
+                // Resize dialog
+                Display display = ((WindowManager) getContext().getSystemService(getContext().WINDOW_SERVICE)).getDefaultDisplay();
+                int width = display.getWidth();
+                int height = display.getHeight();
+                Log.v("width", width + "");
 
-        AdminDAO adminDAO = myDatabase.createAdminDAO();
-//        adminDAO.insert(new Admin(1, "admin"));
+                studentInfoManageDialog.getWindow().setLayout(width, (5 * height) / 6);
+            }
+        });
 
-        ManagerDAO managerDAO = myDatabase.createManagerDAO();
-//        managerDAO.insert(new Manager("ma1", "manager", "15/08/1994", 1, "ma1@gmail.com", "0123456789", "Ma"));
+        Button btnSearchStudent = getView().findViewById(R.id.btnSearchStudent);
+        btnSearchStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                students = studentDAO.getStudentLikeId("%" + editTextStudentId.getText().toString() + "%");
+                listViewStudentManage.setAdapter(new ListStudentAdapter(getContext(), R.layout.adapter_list_student, students));
+                setListViewHeightBasedOnChildren(listViewStudentManage);
+            }
+        });
 
-        StudentDAO studentDAO = myDatabase.createStudentDAO();
-//        studentDAO.insert(new Student("HE130001", "student1", "Student One", "12/09/1998", 1, "A114", 7, "18/08/2016", 0, 0));
-//        studentDAO.insert(new Student("HE130002", "student2", "Student Two", "12/01/1998", 1, "A114", 8, "18/08/2016", 0, 0));
-//        studentDAO.insert(new Student("HE130003", "student3", "Student Three", "16/03/1998", 1, "A114", 9, "18/08/2016", 0, 0));
-//        studentDAO.insert(new Student("HE130004", "student4", "Student Four", "21/12/1998", 1, "A114", 10, "18/08/2016", 0, 0));
-//        studentDAO.insert(new Student("HE130005", "student5", "Student Five", "19/08/1998", 0, "A205", 3, "18/08/2016", 0, 0));
-//        studentDAO.insert(new Student("HE130006", "student6", "Student Six", "05/09/1998", 0, "A205", 4, "18/08/2016", 0, 0));
-//        studentDAO.insert(new Student("HE130007", "student7", "Student Seven", "03/03/1998", 0, "A205", 5, "18/08/2016", 0, 0));
-//        studentDAO.insert(new Student("HE130008", "student8", "Student Eight", "01/02/1998", 0, "A205", 6, "18/08/2016", 0, 0));
-
-        List<Student> students = studentDAO.listStudent();
+        students = studentDAO.listStudent();
         listViewStudentManage.setAdapter(new ListStudentAdapter(getContext(), R.layout.adapter_list_student, students));
 
         setListViewHeightBasedOnChildren(listViewStudentManage);
