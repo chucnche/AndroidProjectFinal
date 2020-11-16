@@ -1,4 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/electricbill"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_book_room"
+            android:icon="@drawable/room"
+            android:title="Book Room" />
+        <item
+            android:id="@+id/nav_electricity_water_bills"
+            android:icon="@drawable/electricbill"
+            android:title="Electricity Water Bill" />
+        <item
+            android:id="@+id/nav_payment_history"
+            android:icon="@drawable/paymenthistory"
+            android:title="Payment History" />
+        <item
+            android:id="@+id/nav_request"
+            android:icon="@drawable/requesticon"
+            android:title="Request" />
+        <item
+            android:id="@+id/nav_room_information"
+            android:icon="@drawable/roominfor"
+            android:title="Room Information" />
+    </group>
 </menu>
