@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Display;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -50,9 +49,6 @@ public class ListStudentAdapter extends ArrayAdapter<Student> {
         String studentName = getItem(position).getName();
         String studentId = getItem(position).getStuID();
         String studentUsername = getItem(position).getUsername();
-
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        convertView = inflater.inflate(mResource, parent, false);
 
         TextView textViewStudentName = convertView.findViewById(R.id.textViewStudentName);
         TextView textViewStudentId = convertView.findViewById(R.id.textViewStudentId);

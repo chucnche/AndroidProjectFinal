@@ -15,6 +15,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projectandroid.R;
 import com.example.projectandroid.database.MyDatabase;
+import com.example.projectandroid.fragment.ManageBookRequestFragment;
+import com.example.projectandroid.fragment.ManageStudentFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
                         loadFragment2();
                         drawerLayout.closeDrawers();
                         break;
+                    case R.id.nav_electricity_water_bills:
+                        loadFragment3();
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_payment_history:
+                        loadFragment4();
+                        drawerLayout.closeDrawers();
+                        break;
                     default:
                         return true;
                 }
@@ -77,6 +87,24 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frame, addCatalog);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    private void loadFragment3() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ManageStudentFragment manageStudentFragment = new ManageStudentFragment();
+        fragmentTransaction.replace(R.id.frame, manageStudentFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+    private void loadFragment4() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ManageBookRequestFragment manageBookRequestFragment = new ManageBookRequestFragment();
+        fragmentTransaction.replace(R.id.frame, manageBookRequestFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
 }

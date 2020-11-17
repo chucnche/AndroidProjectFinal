@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity"
-    android:orientation="vertical">
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,29 +17,52 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textViewStudentId"
+            android:id="@+id/textViewRoom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Student ID:"
+            android:text="Room:"
             android:textColor="#000000" />
 
-        <EditText
-            android:id="@+id/editTextStudentId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            android:layout_weight="9"
-            android:background="@drawable/text_view_border"
-            android:hint="HE130001"
-            android:inputType="textPersonName"
-            android:paddingStart="5dp" />
+        <Spinner
+            android:id="@+id/spinnerRoom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="25dp"
+            android:layout_weight="1"
+            android:background="@drawable/text_view_border" />
 
         <Button
-            android:id="@+id/btnSearchStudent"
+            android:id="@+id/btnSearchRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="#D1D1D1"
+            android:text="Search" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textViewBedNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search" />
+            android:text="Bed No:"
+            android:textColor="#000000" />
+
+        <Spinner
+            android:id="@+id/spinnerBed"
+            android:layout_width="185dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="13dp"
+            android:background="@drawable/text_view_border" />
+
     </LinearLayout>
 
     <ScrollView
@@ -73,12 +97,4 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btnAddStudent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="25dp"
-        android:text="Add Student" />
 </LinearLayout>

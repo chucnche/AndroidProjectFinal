@@ -32,4 +32,7 @@ public interface StudentDAO {
 
     @Query("SELECT * FROM student where stuID LIKE :stuId")
     public List<Student> getStudentLikeId(String stuId);
+
+    @Query("SELECT * FROM student where stuID = :stuId")
+    public Student getStudentById(String stuId);
 }

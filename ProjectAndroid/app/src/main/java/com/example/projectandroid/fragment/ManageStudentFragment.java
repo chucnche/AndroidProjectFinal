@@ -1,8 +1,6 @@
 package com.example.projectandroid.fragment;
 
-import android.app.Activity;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,13 +20,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.projectandroid.R;
-import com.example.projectandroid.activity.ManageStudentActivity;
 import com.example.projectandroid.adapter.ListStudentAdapter;
-import com.example.projectandroid.dal.AccountDAO;
-import com.example.projectandroid.dal.AdminDAO;
-import com.example.projectandroid.dal.BedDAO;
-import com.example.projectandroid.dal.ManagerDAO;
-import com.example.projectandroid.dal.RoomDAO;
 import com.example.projectandroid.dal.StudentDAO;
 import com.example.projectandroid.database.MyDatabase;
 import com.example.projectandroid.dialog.StudentInfoManageDialog;
@@ -103,7 +95,7 @@ public class ManageStudentFragment extends Fragment {
         studentDAO = myDatabase.createStudentDAO();
 
         final EditText editTextStudentId = getView().findViewById(R.id.editTextStudentId);
-        listViewStudentManage = getView().findViewById(R.id.listViewStudentManage);
+        listViewStudentManage = getView().findViewById(R.id.listViewBookingRequestManage);
         Button btnAddStudent = getView().findViewById(R.id.btnAddStudent);
         btnAddStudent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,9 +106,10 @@ public class ManageStudentFragment extends Fragment {
                 studentInfoManageDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
                     public void onCancel(DialogInterface dialog) {
-                        Intent intent = new Intent(getContext(), ManageStudentActivity.class);
-                        ((Activity) getContext()).finish();
-                        getContext().startActivity(intent);
+                        editTextStudentId.setText("");
+                        students = studentDAO.listStudent();
+                        listViewStudentManage.setAdapter(new ListStudentAdapter(getContext(), R.layout.adapter_list_student, students));
+                        setListViewHeightBasedOnChildren(listViewStudentManage);
                     }
                 });
 
