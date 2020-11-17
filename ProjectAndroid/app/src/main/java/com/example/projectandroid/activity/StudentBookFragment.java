@@ -23,20 +23,20 @@ import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.example.projectandroid.R;
-import com.example.projectandroid.dal.AccountDAO;
-import com.example.projectandroid.dal.AdminDAO;
 import com.example.projectandroid.dal.BedDAO;
-import com.example.projectandroid.dal.ManagerDAO;
+import com.example.projectandroid.dal.HistoryBookDAO;
 import com.example.projectandroid.dal.RoomDAO;
 import com.example.projectandroid.dal.StudentDAO;
 import com.example.projectandroid.database.MyDatabase;
-import com.example.projectandroid.domain.Account;
-import com.example.projectandroid.domain.Admin;
 import com.example.projectandroid.domain.Bed;
-import com.example.projectandroid.domain.Manager;
+import com.example.projectandroid.domain.HistoryBook;
 import com.example.projectandroid.domain.Student;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -112,7 +112,7 @@ public class StudentBookFragment extends Fragment {
         listDom.add("D");
         adapterDom = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,listDom);
         spinnerDom.setAdapter((SpinnerAdapter) adapterDom);
-        myDatabase = Room.databaseBuilder(getContext(), MyDatabase.class, "projectchucncsdfs.db").allowMainThreadQueries().build();
+        myDatabase = Room.databaseBuilder(getContext(), MyDatabase.class, "db1.db").allowMainThreadQueries().build();
 
         spinnerDom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -125,14 +125,6 @@ public class StudentBookFragment extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         BedDAO bedDAO = myDatabase.createBedDAO();
-//                        bedDAO.insert(new Bed(1, "A114", 7, 1));
-//                        bedDAO.insert(new Bed(2, "A114", 1, 0));
-//                        bedDAO.insert(new Bed(3, "A114", 2, 0));
-//                        bedDAO.insert(new Bed(4, "A114", 3, 0));
-//                        bedDAO.insert(new Bed(5, "A205", 4, 1));
-//                        bedDAO.insert(new Bed(6, "A205", 5, 1));
-//                        bedDAO.insert(new Bed(7, "A205", 6, 1));
-//                        bedDAO.insert(new Bed(8, "A205", 7, 1));
                         List<Bed> listBed=bedDAO.listBedByRoomName(listRoom.get(position).getRoomName());
                         adapterBedNo = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,listBed);
                         spinnerBed.setAdapter((SpinnerAdapter) adapterBedNo);
@@ -159,15 +151,28 @@ public class StudentBookFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(student.getMoneyAccount()>=0) {
-                    student.setName(spinnerRoom.getSelectedItem().toString());
-                    student.setBedNo(Integer.parseInt(spinnerBed.getSelectedItem().toString()));
-                    student.setMoneyAccount(student.getMoneyAccount()-0);
-                    studentDAO.update(student);
-                    BedDAO bedDAO = myDatabase.createBedDAO();
-                    Bed bed = (Bed) bedDAO.listBedByRoomNameBed(student.getRoomName(), student.getBedNo());
-                    bed.setBedStatus(1);
-                    bedDAO.update(bed);
-                    Toast.makeText(getContext(), "Book Success", Toast.LENGTH_SHORT).show();
+//                    student.setName(spinnerRoom.getSelectedItem().toString());
+//                    student.setBedNo(Integer.parseInt(spinnerBed.getSelectedItem().toString()));
+//                    student.setMoneyAccount(student.getMoneyAccount()-0);
+//                    studentDAO.update(student);
+//                    BedDAO bedDAO = myDatabase.createBedDAO();
+//                    Bed bed = (Bed) bedDAO.listBedByRoomNameBed(student.getRoomName(), student.getBedNo());
+//                    bed.setBedStatus(1);
+//                    bedDAO.update(bed);
+                    HistoryBookDAO historyBookDAO=myDatabase.createHistoryBookDAO();
+                    HistoryBook historyBook=new HistoryBook();
+                    historyBook.setStuID(student.getStuID());
+                    historyBook.setRoomName(student.getRoomName());
+                    historyBook.setBedNo(student.getBedNo());
+                    SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+                    historyBook.setDateBook(simpleDateFormat.format(new Date()));
+                    final java.util.Calendar cal = GregorianCalendar.getInstance();
+                    cal.setTime(new Date());
+                    cal.add( GregorianCalendar.MONTH, 4 ); // date manipulation
+                    historyBook.setDateExpiry(cal.toString());
+                    historyBook.setStatus(1);
+                    historyBookDAO.insert(historyBook);
+//                    Toast.makeText(getContext(), "Book Success", Toast.LENGTH_SHORT).show();
                     HistoryBookFragment addCatalog = new HistoryBookFragment();
                     FragmentManager manager = getFragmentManager();
                     FragmentTransaction transaction = manager.beginTransaction();

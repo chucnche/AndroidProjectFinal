@@ -92,7 +92,7 @@ public class ElectricWaterBillFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        myDatabase = Room.databaseBuilder(getContext(), MyDatabase.class, "projectchucnc.db").allowMainThreadQueries().build();
+        myDatabase = Room.databaseBuilder(getContext(), MyDatabase.class, "db1.db").allowMainThreadQueries().build();
         RoomDAO roomDAO = myDatabase.createRoomDAO();
 //        roomDAO.insert(new com.example.projectandroid.domain.Room("A114", 1, 250));
 //        roomDAO.insert(new com.example.projectandroid.domain.Room("A205", 0, 250));

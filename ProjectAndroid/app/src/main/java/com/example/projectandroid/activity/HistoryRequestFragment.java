@@ -13,41 +13,39 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.projectandroid.R;
 import com.example.projectandroid.dal.HistoryBookDAO;
+import com.example.projectandroid.dal.RequestDAO;
 import com.example.projectandroid.dal.StudentDAO;
 import com.example.projectandroid.database.MyDatabase;
-import com.example.projectandroid.domain.ElectricityWaterBills;
 import com.example.projectandroid.domain.HistoryBook;
+import com.example.projectandroid.domain.Request;
 import com.example.projectandroid.domain.Student;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link HistoryBookFragment#newInstance} factory method to
+ * Use the {@link HistoryRequestFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HistoryBookFragment extends Fragment {
-
+public class HistoryRequestFragment extends Fragment {
+    private MyDatabase myDatabase;
+    private  TableLayout tableLayout;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private MyDatabase myDatabase;
-    private TableLayout tableLayout;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    public HistoryBookFragment() {
+    public HistoryRequestFragment() {
         // Required empty public constructor
     }
 
@@ -57,11 +55,11 @@ public class HistoryBookFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment HistoryBookFragment.
+     * @return A new instance of fragment HistoryRequestFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static HistoryBookFragment newInstance(String param1, String param2) {
-        HistoryBookFragment fragment = new HistoryBookFragment();
+    public static HistoryRequestFragment newInstance(String param1, String param2) {
+        HistoryRequestFragment fragment = new HistoryRequestFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -82,7 +80,7 @@ public class HistoryBookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history_book, container, false);
+        return inflater.inflate(R.layout.fragment_history_request, container, false);
     }
 
     @Override
@@ -94,32 +92,34 @@ public class HistoryBookFragment extends Fragment {
 
         StudentDAO studentDAO=myDatabase.createStudentDAO();
         Student student = studentDAO.getStudentByUser(username);
-        HistoryBookDAO historyBookDAO=myDatabase.createHistoryBookDAO();
+        RequestDAO requestDAO=myDatabase.createRequestDAO();
         myDatabase = Room.databaseBuilder(getContext(), MyDatabase.class, "db1.db").allowMainThreadQueries().build();
         tableLayout = (TableLayout) view.findViewById(R.id.tableLayout);
         if(student!=null && student.getStuID()!=null) {
-            List<HistoryBook> historyBooks = historyBookDAO.listHistoryBookByUsername(student.getStuID());
-            for (int i = 0;i<historyBooks.size();i++){
-                HistoryBook historyBook = historyBooks.get(i);
+            List<Request> requests = requestDAO.listRequestByUser(student.getStuID());
+            for (int i = 0;i<requests.size();i++){
+                Request request = requests.get(i);
                 TableRow tableRow = new TableRow(tableLayout.getContext());
 
                 tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
-                Button txtId = new Button(tableLayout.getContext());
-                Button txtRoomName = new Button(tableLayout.getContext());
-                Button txtBedNo = new Button(tableLayout.getContext());
-                Button txtDateBook = new Button(tableLayout.getContext());
-                Button txtStatus = new Button(tableLayout.getContext());
-                txtId.setText(String.valueOf(historyBook.getStuID()));
-                txtRoomName.setText(historyBook.getRoomName());
-                txtBedNo.setText(String.valueOf(historyBook.getBedNo()));
-                txtDateBook.setText(String.valueOf(historyBook.getDateBook()));
-                txtStatus.setText(String.valueOf(historyBook.getStatus()));
+                TextView txtId = new TextView(tableLayout.getContext());
+                TextView txtRequest = new TextView(tableLayout.getContext());
+                TextView txtMaID = new TextView(tableLayout.getContext());
+                TextView txtReply = new TextView(tableLayout.getContext());
+                TextView txtDate = new TextView(tableLayout.getContext());
+                TextView txtDateReply = new TextView(tableLayout.getContext());
+                txtId.setText(String.valueOf(request.getStuID()));
+                txtRequest.setText(request.getRequestContent());
+                txtMaID.setText(String.valueOf(request.getMaID()));
+                txtReply.setText(request.getReply());
+                txtDate.setText(String.valueOf(request.getDateRequest()));
+                txtDateReply.setText(String.valueOf(request.getDateReply()));
                 tableRow.addView(txtId);
-                tableRow.addView(txtRoomName);
-                tableRow.addView(txtBedNo);
-                tableRow.addView(txtDateBook);
-                tableRow.addView(txtStatus);
-                tableRow.setPadding(5,5,5,5);
+                tableRow.addView(txtRequest);
+                tableRow.addView(txtMaID);
+                tableRow.addView(txtReply);
+                tableRow.addView(txtDate);
+                tableRow.addView(txtDateReply);
                 tableLayout.addView(tableRow);
             }
 

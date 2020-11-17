@@ -26,8 +26,12 @@ public interface HistoryBookDAO {
 
     @Query("SELECT * FROM historybook")
     public List<HistoryBook> listHistoryBook();
-
+    
     @Query("SELECT * FROM historybook WHERE roomName = :roomName AND bedNo = :bedNo AND status = 1")
     public List<HistoryBook> listPendingHistoryBookRoomNameBedNo(String roomName, int bedNo);
+
+    @Query("SELECT * FROM historybook WHERE stuID =:stuID")
+    public List<HistoryBook> listHistoryBookByUsername(String stuID);
+
 
 }
