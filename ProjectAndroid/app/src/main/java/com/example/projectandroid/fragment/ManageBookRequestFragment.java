@@ -101,7 +101,7 @@ public class ManageBookRequestFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        myDatabase = Room.databaseBuilder(((ContextWrapper) view.getContext()).getBaseContext(), MyDatabase.class, "projectchucnc.db").allowMainThreadQueries().build();
+        myDatabase = Room.databaseBuilder(((ContextWrapper) view.getContext()).getBaseContext(), MyDatabase.class, "db1.db").allowMainThreadQueries().build();
         historyBookDAO = myDatabase.createHistoryBookDAO();
         roomDAO = myDatabase.createRoomDAO();
         bedDAO = myDatabase.createBedDAO();

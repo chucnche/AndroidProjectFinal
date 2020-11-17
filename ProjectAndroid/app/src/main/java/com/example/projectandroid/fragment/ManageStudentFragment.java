@@ -91,7 +91,7 @@ public class ManageStudentFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        myDatabase = Room.databaseBuilder(getActivity().getBaseContext(), MyDatabase.class, "projectchucnc.db").allowMainThreadQueries().build();
+        myDatabase = Room.databaseBuilder(getActivity().getBaseContext(), MyDatabase.class, "db1.db").allowMainThreadQueries().build();
         studentDAO = myDatabase.createStudentDAO();
 
         final EditText editTextStudentId = getView().findViewById(R.id.editTextStudentId);

@@ -27,5 +27,9 @@
             android:id="@+id/nav_room_information"
             android:icon="@drawable/roominfor"
             android:title="Room Information" />
+        <item
+            android:id="@+id/nav_logout_student"
+            android:icon="@drawable/logout"
+            android:title="Logout" />
     </group>
 </menu>

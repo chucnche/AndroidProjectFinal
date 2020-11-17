@@ -151,8 +151,8 @@ public class StudentBookFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(student.getMoneyAccount()>=0) {
-//                    student.setName(spinnerRoom.getSelectedItem().toString());
-//                    student.setBedNo(Integer.parseInt(spinnerBed.getSelectedItem().toString()));
+                    student.setName(spinnerRoom.getSelectedItem().toString());
+                    student.setBedNo(Integer.parseInt(spinnerBed.getSelectedItem().toString()));
 //                    student.setMoneyAccount(student.getMoneyAccount()-0);
 //                    studentDAO.update(student);
 //                    BedDAO bedDAO = myDatabase.createBedDAO();

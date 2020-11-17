@@ -137,8 +137,8 @@ public class ElectricWaterBillFragment extends Fragment {
 //        studentDAO.insert(new Student("HE130008", "student8", "Student Eight", "01/02/1998", 0, "A205", 6, "18/08/2016", 0, 0));
 
         ElectricityWaterBillsDAO electricityWaterBillsDAO = myDatabase.createElectricityWaterBillsDAO();
-//        electricityWaterBillsDAO.insert(new ElectricityWaterBills(1,"A114","Tháng 1",123,123,1423444));
-//        electricityWaterBillsDAO.insert(new ElectricityWaterBills(2,"A114","Tháng 2",103,123,1423444));
+        electricityWaterBillsDAO.insert(new ElectricityWaterBills(1,"A114","Tháng 1",123,123,1423444));
+        electricityWaterBillsDAO.insert(new ElectricityWaterBills(2,"A114","Tháng 2",103,123,1423444));
 
         SharedPreferences sharedPreferences =this.getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
         final String username = sharedPreferences.getString("username","student1");

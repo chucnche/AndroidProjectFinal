@@ -86,10 +86,13 @@ public class HistoryPaymentFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        myDatabase = Room.databaseBuilder(getContext(), MyDatabase.class, "projectchucnc.db").allowMainThreadQueries().build();
+        myDatabase = Room.databaseBuilder(getContext(), MyDatabase.class, "db1.db").allowMainThreadQueries().build();
+        HistoryPaymentDAO historyPaymentDAO = myDatabase.createHistoryPaymentDAO();
+//        historyPaymentDAO.insert(new HistoryPayment(1,"HE130001","12/01/2020","Tiền Phòng",123,"A114"));
+//        historyPaymentDAO.insert(new HistoryPayment(2,"HE130001","12/01/2020","Tiền điện nước",423,"A114"));
         SharedPreferences sharedPreferences =this.getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
         final String username = sharedPreferences.getString("username","student1");
-        HistoryPaymentDAO historyPaymentDAO = myDatabase.createHistoryPaymentDAO();
+//        HistoryPaymentDAO historyPaymentDAO = myDatabase.createHistoryPaymentDAO();
 //        historyPaymentDAO.insert(new HistoryPayment(1,"HE130001","12/01/2020","Tiền Phòng",123,"A114"));
 //        historyPaymentDAO.insert(new HistoryPayment(2,"HE130001","12/01/2020","Tiền điện nước",423,"A114"));
         StudentDAO studentDAO=myDatabase.createStudentDAO();
@@ -102,20 +105,17 @@ public class HistoryPaymentFragment extends Fragment {
                 TableRow tableRow = new TableRow(table.getContext());
 
                 tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
-                Button txtId = new Button(table.getContext());
                 Button txtRoomName = new Button(table.getContext());
                 Button txtDate = new Button(table.getContext());
                 Button txtType = new Button(table.getContext());
                 Button txtMoney = new Button(table.getContext());
                 Button txtStuId = new Button(table.getContext());
-                txtId.setText(String.valueOf(historyPayment.getId()));
                 txtRoomName.setText(historyPayment.getRoomName());
                 txtDate.setText(historyPayment.getDatePay());
                 txtType.setText(historyPayment.getType());
                 txtMoney.setText(String.valueOf(historyPayment.getMoneyPay()));
                 txtStuId.setText(student.getName());
-                txtId.setEnabled(false);txtRoomName.setEnabled(false);txtDate.setEnabled(false);txtType.setEnabled(false);txtMoney.setEnabled(false);txtStuId.setEnabled(false);
-                tableRow.addView(txtId);
+                txtRoomName.setEnabled(false);txtDate.setEnabled(false);txtType.setEnabled(false);txtMoney.setEnabled(false);txtStuId.setEnabled(false);
                 tableRow.addView(txtStuId);
                 tableRow.addView(txtRoomName);
                 tableRow.addView(txtDate);

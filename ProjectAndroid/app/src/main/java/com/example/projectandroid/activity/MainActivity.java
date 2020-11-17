@@ -1,6 +1,8 @@
 package com.example.projectandroid.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -12,9 +14,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.room.Room;
 
 import com.example.projectandroid.R;
+import com.example.projectandroid.dal.AccountDAO;
 import com.example.projectandroid.database.MyDatabase;
+import com.example.projectandroid.domain.Account;
 import com.example.projectandroid.fragment.ManageBookRequestFragment;
 import com.example.projectandroid.fragment.ManageStudentFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -39,13 +44,26 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView = findViewById(R.id.nav_view);
-        navigationView.inflateMenu(R.menu.drawer_menu);
+        SharedPreferences sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+        String user = sharedPreferences.getString("user","");
+        myDatabase = Room.databaseBuilder(getBaseContext(), MyDatabase.class, "db1.db").allowMainThreadQueries().build();
+        final AccountDAO accountDAO=myDatabase.createAccountDAO();
+        Account account=accountDAO.getAccountByUser(user);
+        if(account.getType()==2) {
+            ProfileFragment profileFragment = new ProfileFragment();
+            loadFragment(profileFragment);
+            navigationView.inflateMenu(R.menu.drawer_menu);
+        }
+        if(account.getType()==1){
+            ManageBookRequestFragment manageBookRequestFragment = new ManageBookRequestFragment();
+            loadFragment(manageBookRequestFragment);
+            navigationView.inflateMenu(R.menu.draw_menu_manager);
+        }
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
                 Fragment fragment = null;
-                Intent intent = new Intent(MainActivity.this, ProfileStudentActivity.class);
                 switch (id) {
                     case R.id.nav_profile:
                         ProfileFragment profileFragment = new ProfileFragment();
@@ -63,12 +81,31 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.nav_electricity_water_bills:
-                        loadFragment3();
+                        ElectricWaterBillFragment electricWaterBillFragment = new ElectricWaterBillFragment();
+                        loadFragment(electricWaterBillFragment);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.nav_payment_history:
-                        loadFragment4();
+                        HistoryPaymentFragment historyPaymentFragment = new HistoryPaymentFragment();
+                        loadFragment(historyPaymentFragment);
                         drawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_student:
+                        ManageStudentFragment manageStudentFragment = new ManageStudentFragment();
+                        loadFragment(manageStudentFragment);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_book_request:
+                        ManageBookRequestFragment manageBookRequestFragment = new ManageBookRequestFragment();
+                        loadFragment(manageBookRequestFragment);
+                        drawerLayout.closeDrawers();
+                        break;
+                    case R.id.nav_logout_manager:
+                        finish();
+                        break;
+                    case R.id.nav_logout_student:
+                        Intent intent = new Intent(MainActivity.this,LoginFormActivity.class);
+                        startActivity(intent);
                         break;
                     default:
                         return true;
@@ -86,23 +123,5 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-
-    private void loadFragment3() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        ManageStudentFragment manageStudentFragment = new ManageStudentFragment();
-        fragmentTransaction.replace(R.id.frame, manageStudentFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
-
-    private void loadFragment4() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        ManageBookRequestFragment manageBookRequestFragment = new ManageBookRequestFragment();
-        fragmentTransaction.replace(R.id.frame, manageBookRequestFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
 
 }
