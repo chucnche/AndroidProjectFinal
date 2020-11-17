@@ -13,14 +13,18 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.projectandroid.R;
+import com.example.projectandroid.dal.ElectricityWaterBillsDAO;
+import com.example.projectandroid.dal.HistoryPaymentDAO;
 import com.example.projectandroid.dal.StudentDAO;
 import com.example.projectandroid.database.MyDatabase;
 import com.example.projectandroid.domain.ElectricityWaterBills;
+import com.example.projectandroid.domain.HistoryPayment;
 import com.example.projectandroid.domain.Student;
 
 import java.util.List;
@@ -81,42 +85,46 @@ public class HistoryPaymentFragment extends Fragment {
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-////        super.onViewCreated(view, savedInstanceState);
-////        myDatabase = Room.databaseBuilder(getContext(), MyDatabase.class, "projectchucnc.db").allowMainThreadQueries().build();
-////        SharedPreferences sharedPreferences =this.getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
-////        final String username = sharedPreferences.getString("username","student1");
-////
-////        StudentDAO studentDAO=myDatabase.createStudentDAO();
-////        Student student = studentDAO.getStudentByUser(username);
-////        table = (TableLayout) view.findViewById(R.id.tblBill);
-////        if(student!=null && student.getStuID()!=null) {
-////            List<ElectricityWaterBills> listElectricityWaterBills = electricityWaterBillsDAO.getBillByRoomName(student.getRoomName());
-////            for (int i = 0;i<listElectricityWaterBills.size();i++){
-////                ElectricityWaterBills electricityWaterBills = listElectricityWaterBills.get(i);
-////                TableRow tableRow = new TableRow(table.getContext());
-////
-////                tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
-////                TextView txtId = new TextView(table.getContext());
-////                TextView txtRoomName = new TextView(table.getContext());
-////                TextView txtMonth = new TextView(table.getContext());
-////                TextView txtElectric = new TextView(table.getContext());
-////                TextView txtWater = new TextView(table.getContext());
-////                TextView txtPaid = new TextView(table.getContext());
-////                txtId.setText(String.valueOf(electricityWaterBills.getId()));
-////                txtRoomName.setText(electricityWaterBills.getRoomName());
-////                txtMonth.setText(electricityWaterBills.getMonthYear());
-////                txtElectric.setText(String.valueOf(electricityWaterBills.getSoDien()));
-////                txtWater.setText(String.valueOf(electricityWaterBills.getSoNuoc()));
-////                txtPaid.setText(String.valueOf(electricityWaterBills.getPaid()));
-////                tableRow.addView(txtId);
-////                tableRow.addView(txtRoomName);
-////                tableRow.addView(txtMonth);
-////                tableRow.addView(txtElectric);
-////                tableRow.addView(txtWater);
-////                tableRow.addView(txtPaid);
-////                table.addView(tableRow);
-////            }
-//
-//        }
+        super.onViewCreated(view, savedInstanceState);
+        myDatabase = Room.databaseBuilder(getContext(), MyDatabase.class, "projectchucnc.db").allowMainThreadQueries().build();
+        SharedPreferences sharedPreferences =this.getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
+        final String username = sharedPreferences.getString("username","student1");
+        HistoryPaymentDAO historyPaymentDAO = myDatabase.createHistoryPaymentDAO();
+//        historyPaymentDAO.insert(new HistoryPayment(1,"HE130001","12/01/2020","Tiền Phòng",123,"A114"));
+//        historyPaymentDAO.insert(new HistoryPayment(2,"HE130001","12/01/2020","Tiền điện nước",423,"A114"));
+        StudentDAO studentDAO=myDatabase.createStudentDAO();
+        Student student = studentDAO.getStudentByUser(username);
+        table = (TableLayout) view.findViewById(R.id.tblPayment);
+        if(student!=null && student.getStuID()!=null) {
+            List<HistoryPayment> listHistoryPayments = historyPaymentDAO.getHistoryPaymentByStudentId(student.getStuID());
+            for (int i = 0;i<listHistoryPayments.size();i++){
+                HistoryPayment historyPayment = listHistoryPayments.get(i);
+                TableRow tableRow = new TableRow(table.getContext());
+
+                tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
+                Button txtId = new Button(table.getContext());
+                Button txtRoomName = new Button(table.getContext());
+                Button txtDate = new Button(table.getContext());
+                Button txtType = new Button(table.getContext());
+                Button txtMoney = new Button(table.getContext());
+                Button txtStuId = new Button(table.getContext());
+                txtId.setText(String.valueOf(historyPayment.getId()));
+                txtRoomName.setText(historyPayment.getRoomName());
+                txtDate.setText(historyPayment.getDatePay());
+                txtType.setText(historyPayment.getType());
+                txtMoney.setText(String.valueOf(historyPayment.getMoneyPay()));
+                txtStuId.setText(student.getName());
+                txtId.setEnabled(false);txtRoomName.setEnabled(false);txtDate.setEnabled(false);txtType.setEnabled(false);txtMoney.setEnabled(false);txtStuId.setEnabled(false);
+                tableRow.addView(txtId);
+                tableRow.addView(txtStuId);
+                tableRow.addView(txtRoomName);
+                tableRow.addView(txtDate);
+                tableRow.addView(txtMoney);
+                tableRow.addView(txtType);
+
+                table.addView(tableRow);
+            }
+
+        }
     }
 }

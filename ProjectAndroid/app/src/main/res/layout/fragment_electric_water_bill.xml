@@ -11,48 +11,53 @@
         android:id="@+id/tblBill"
         android:layout_width="match_parent"
         android:layout_height="715dp"
-        android:layout_margin="10dp"
         android:stretchColumns="*">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="39dp"
                 android:layout_height="wrap_content"
-                android:text="ID" />
+                android:text="ID"
+                android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="63dp"
                 android:layout_height="wrap_content"
-                android:text="Room Name" />
+                android:text="Room"
+                android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:text="Month" />
+                android:text="Month"
+                android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/button13"
+                android:layout_width="74dp"
                 android:layout_height="wrap_content"
-                android:text="Electric" />
+                android:text="Electric"
+                android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/button14"
+                android:layout_width="69dp"
                 android:layout_height="wrap_content"
-                android:text="Water" />
+                android:text="Water"
+                android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/button15"
+                android:layout_width="62dp"
                 android:layout_height="wrap_content"
-                android:text="Money" />
+                android:text="Money"
+                android:textSize="12sp" />
         </TableRow>
 
         <TableRow
