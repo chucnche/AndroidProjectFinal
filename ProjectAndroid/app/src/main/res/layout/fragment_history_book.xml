@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:shrinkColumns="1,2,3,4,5"
+
     tools:context=".activity.HistoryBookFragment">
 
     <TableLayout
@@ -21,5 +22,43 @@
         app:layout_constraintTop_toTopOf="parent">
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="1dp">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button23"
+                android:layout_width="66dp"
+                android:layout_height="wrap_content"
+                android:text="MaSV"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/button24"
+                android:layout_width="72dp"
+                android:layout_height="wrap_content"
+                android:text="Room"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/button25"
+                android:layout_width="71dp"
+                android:layout_height="wrap_content"
+                android:text="BedNo" />
+
+            <Button
+                android:id="@+id/button26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date" />
+
+            <Button
+                android:id="@+id/button27"
+                android:layout_width="78dp"
+                android:layout_height="wrap_content"
+                android:text="Status" />
+        </TableRow>
     </TableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

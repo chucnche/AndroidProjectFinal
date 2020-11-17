@@ -103,7 +103,7 @@ public class HistoryBookFragment extends Fragment {
                 HistoryBook historyBook = historyBooks.get(i);
                 TableRow tableRow = new TableRow(tableLayout.getContext());
 
-                tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
+//                tableRow.setGravity(Gravity.CENTER_HORIZONTAL);
                 Button txtId = new Button(tableLayout.getContext());
                 Button txtRoomName = new Button(tableLayout.getContext());
                 Button txtBedNo = new Button(tableLayout.getContext());
@@ -119,7 +119,6 @@ public class HistoryBookFragment extends Fragment {
                 tableRow.addView(txtBedNo);
                 tableRow.addView(txtDateBook);
                 tableRow.addView(txtStatus);
-                tableRow.setPadding(5,5,5,5);
                 tableLayout.addView(tableRow);
             }
 
